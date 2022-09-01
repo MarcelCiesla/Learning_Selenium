@@ -1,4 +1,6 @@
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.InvalidArgumentException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,8 +17,18 @@ public class SeleniumTest {
         //WebDriver driver = new InternetExplorerDriver();
         //driver.get("https://www.google.com");
 
-        WebDriver driver = getDriver("ie");
-        driver.get("https://www.google.com");
+        WebDriver driver = getDriver("chrome");
+        //driver.manage().window().maximize();   przegladarka na full screena
+        Dimension windowSize = new Dimension(200, 200);  // narzucenie wielkości okna przeglądarki
+        driver.manage().window().setSize(windowSize);
+        driver.get("https://www.google.com");   // otwieranie konkretnej strony
+
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("window.open('https://www.google.com','blank','height=200,width=200')");
+
+        // pytanie na rozmowie czym się rózni driver.close od driver.quit
+        //driver.close();  // zamyka tylko konkretne okno
+        driver.quit(); // zamyka wszystko
     }
 
     public WebDriver getDriver(String browser) {
