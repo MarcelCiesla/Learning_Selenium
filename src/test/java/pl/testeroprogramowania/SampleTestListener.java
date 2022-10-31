@@ -25,8 +25,7 @@ public class SampleTestListener implements ITestListener {
     }
 @Override
     public void onTestFailure(ITestResult result) {
-    WebDriverManager.chromedriver().setup();
-    WebDriver driver = new ChromeDriver();
+    WebDriver driver = DriverFactory.getDriver();
     int randomnumber = (int) (Math.random()*1000);
     TakesScreenshot screenshot = (TakesScreenshot) driver;
     File before = screenshot.getScreenshotAs(OutputType.FILE);

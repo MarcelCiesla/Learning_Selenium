@@ -24,8 +24,7 @@ public class ThirdTest extends BaseTest {
 
     @Test //@Ignore do ignorowania
     public void firstTest() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver = DriverFactory.getDriver();
         driver.get("https://testeroprogramowania.github.io/selenium/wait2.html");
         driver.findElement(By.id("clickOnMe")).click();
         FluentWait<WebDriver> wait = new FluentWait<>(driver);
